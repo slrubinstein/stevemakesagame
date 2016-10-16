@@ -1,15 +1,19 @@
 const Keyboard = require('./Keyboard');
 const Player = require('./Player');
+const World = require('./World');
+const Room = require('./Room');
+const room1 = require('./rooms/room1');
 
 class Game {
   constructor(ctx) {
     this.ctx = ctx;
-    this.height = 400;
-    this.width = 400;
+    this.height = World.WORLD_HEIGHT;
+    this.width = World.WORLD_WIDTH;
   }
 
   init() {
-    this.player = new Player(this, 100, 100);
+    this.player = new Player(this, 200, 200);
+    this.room = new Room(room1);
     this.initKeyboard();
     this.update();
   }
@@ -20,8 +24,7 @@ class Game {
   }
 
   drawWorld() {
-    this.ctx.fillStyle = 'green';
-    this.ctx.fillRect(0, 0, this.width, this.height);
+    this.room.drawRoom(this.ctx);
   }
 
   update() {

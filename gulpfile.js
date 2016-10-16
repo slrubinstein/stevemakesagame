@@ -14,12 +14,14 @@ gulp.task('browserify', function() {
 
 const watchers = [
   'source/**/*.js',
-  'source/assets/*.json'
+  'source/assets/*.json',
+  'source/index.html'
 ];
 
 gulp.task('watch', function() {
   return watch(watchers, function () {
     gulp.start('browserify');
+    gulp.start('copy-html');
   });
 });
 

@@ -1,11 +1,13 @@
+const World = require('./World');
+
 class Player {
   constructor(game, x, y) {
     this.game = game;
     this.x = x;
     this.y = y;
     this.color = 'red';
-    this.width = 10;
-    this.height = 10;
+    this.width = World.CELL_SIZE;
+    this.height = World.CELL_SIZE;
   }
 
   handleKey(key) {
