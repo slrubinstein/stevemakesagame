@@ -1,7 +1,9 @@
 const World = require('./World');
+const Drawable = require('./Drawable');
 
-class Player {
+class Player extends Drawable {
   constructor(game, x, y) {
+    super();
     this.game = game;
     this.x = x;
     this.y = y;
@@ -64,10 +66,6 @@ class Player {
     }
   }
 
-  draw(ctx) {
-    ctx.fillStyle = this.color;
-    ctx.fillRect(this.x, this.y, this.width, this.height);
-  }
 }
 
 module.exports = Player;
