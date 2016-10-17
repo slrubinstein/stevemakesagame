@@ -1,7 +1,8 @@
 const World = require('./World');
-const Drawable = require('./Drawable');
+const Movable = require('./Movable');
+const Rock = require('./Rock');
 
-class Player extends Drawable {
+class Player extends Movable {
   constructor(game, x, y) {
     super();
     this.game = game;
@@ -29,43 +30,15 @@ class Player extends Drawable {
     }
   }
 
-  move(direction) {
-    const newPosition = this.getNewPosition(direction);
-    this.x = newPosition.x;
-    this.y = newPosition.y;
-    this.game.update();
-  }
-
-  getNewPosition(direction) {
-    switch (direction) {
-      case 'east':
-        return {
-          x: this.x + this.width,
-          y: this.y
-        };
-      case 'west':
-        return {
-          x: this.x - this.width,
-          y: this.y
-        };
-      case 'north':
-        return {
-          x: this.x,
-          y: this.y - this.height
-        };
-      case 'south':
-        return {
-          x: this.x,
-          y: this.y + this.height
-        };
-      default:
-        return {
-          x: this.x,
-          y: this.y
-        };
+  handleCollision(collision) {
+    if (collision instanceof Rock) {
+      return;
     }
   }
 
+  afterMove() {
+    this.game.update();
+  }
 }
 
 module.exports = Player;
