@@ -30,10 +30,28 @@ class Player extends Movable {
     }
   }
 
-  handleCollision(collision) {
+  handleCollision(collision, newPosition) {
     if (collision instanceof Rock) {
-      return;
+      this.moveToNewPosition(newPosition);
     }
+  }
+
+  handleLeaveMap(direction) {
+    switch(direction) {
+      case 'east':
+        this.x = 0;
+        break;
+      case 'west':
+        this.x = World.WORLD_WIDTH - this.width;
+        break;
+      case 'north':
+        this.y = World.WORLD_HEIGHT - this.height;
+        break;
+      case 'south':
+        this.y = 0;
+        break;
+    }
+    this.game.getNewRoom(direction);
   }
 
   afterMove() {

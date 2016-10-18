@@ -3,7 +3,7 @@ const Rock = require('./Rock');
 
 class Room {
   constructor(room) {
-    this.room = room;
+    this.data = room;
     this.scenery = [];
     this.setScenery();
   }
@@ -14,7 +14,7 @@ class Room {
   }
 
   drawBackground(ctx) {
-    ctx.fillStyle = this.room.backgroundColor;
+    ctx.fillStyle = this.data.backgroundColor;
     ctx.fillRect(0, 0, World.WORLD_WIDTH, World.WORLD_HEIGHT);
   }
 
@@ -23,7 +23,7 @@ class Room {
   }
 
   setScenery() {
-    const rows = this.room.map;
+    const rows = this.data.map;
 
     rows.forEach((row, i) => {
       row.forEach((cell, j) => {

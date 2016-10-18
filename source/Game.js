@@ -2,7 +2,7 @@ const Keyboard = require('./Keyboard');
 const Player = require('./Player');
 const World = require('./World');
 const Room = require('./Room');
-const room1 = require('./rooms/room1');
+const RoomLoader = require('./RoomLoader');
 
 class Game {
   constructor(ctx) {
@@ -13,7 +13,7 @@ class Game {
 
   init() {
     this.player = new Player(this, 200, 200);
-    this.room = new Room(room1);
+    this.room =  new Room(RoomLoader['room1']);
     this.initKeyboard();
     this.update();
   }
@@ -25,6 +25,11 @@ class Game {
 
   drawWorld() {
     this.room.drawRoom(this.ctx);
+  }
+
+  getNewRoom(direction) {
+    var nextRoom = this.room.data.exits[direction];
+    this.room = new Room(RoomLoader[nextRoom]);
   }
 
   update() {

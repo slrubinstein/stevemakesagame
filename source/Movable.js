@@ -9,19 +9,17 @@ class Movable extends Drawable {
   }
 
   move(direction) {
-    this.lastPosition = {
-      x: this.x,
-      y: this.y
-    };
-
     const newPosition = this.getNewPosition(direction);
-
     const collision = this.checkCollisions(newPosition);
 
     if (collision.length) {
-      this.handleCollision(collision[0]);
+      this.handleCollision(collision[0], newPosition);
     } else {
       this.moveToNewPosition(newPosition);
+    }
+
+    if (CollisionDetector.didLeaveMap(newPosition)) {
+      this.handleLeaveMap(direction);
     }
 
     if (this.afterMove) {
