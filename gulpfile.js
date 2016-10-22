@@ -14,7 +14,7 @@ gulp.task('browserify', function() {
 
 const watchers = [
   'source/**/*.js',
-  'source/assets/*.json',
+  'source/rooms/*.json',
   'source/index.html'
 ];
 

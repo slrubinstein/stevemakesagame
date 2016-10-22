@@ -1,5 +1,6 @@
 const World = require('./World');
 const Rock = require('./Rock');
+const GameObjects = require('./GameObjects');
 
 class Room {
   constructor(room) {
@@ -33,11 +34,14 @@ class Room {
   }
 
   setSceneryItem(cell, i, j) {
-    switch(cell) {
-      case 1:
-        this.scenery.push(new Rock(j * World.CELL_SIZE, i * World.CELL_SIZE));
-        break;
+    if (!cell) {
+      return;
     }
+
+    const object = this.data.objects[cell];
+    const instantiatedObject = new GameObjects[object](j * World.CELL_SIZE, i * World.CELL_SIZE);
+
+    this.scenery.push(instantiatedObject);
   }
 }
 
