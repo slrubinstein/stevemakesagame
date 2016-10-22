@@ -8,6 +8,8 @@ class Movable extends Drawable {
     super();
   }
 
+  handleCollision() {}
+
   move(direction) {
     const newPosition = this.getNewPosition(direction);
     const collision = this.checkCollisions(newPosition);

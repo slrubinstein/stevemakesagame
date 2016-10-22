@@ -32,7 +32,7 @@ class Player extends Movable {
 
   handleCollision(collision, newPosition) {
     if (collision instanceof Rock) {
-      this.moveToNewPosition(newPosition);
+      return;
     }
   }
 

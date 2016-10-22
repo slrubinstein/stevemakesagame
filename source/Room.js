@@ -1,10 +1,12 @@
 const World = require('./World');
 const Rock = require('./Rock');
 const GameObjects = require('./GameObjects');
+const Enemy = require('./Enemy');
 
 class Room {
-  constructor(room) {
+  constructor(room, game) {
     this.data = room;
+    this.game = game;
     this.scenery = [];
     this.setScenery();
   }
@@ -39,7 +41,12 @@ class Room {
     }
 
     const object = this.data.objects[cell];
-    const instantiatedObject = new GameObjects[object](j * World.CELL_SIZE, i * World.CELL_SIZE);
+    const instantiatedObject = new GameObjects[object](j * World.CELL_SIZE, i * World.CELL_SIZE, this.game);
+
+    if (instantiatedObject instanceof Enemy) {
+      this.game.actors.push(instantiatedObject);
+      return;
+    }
 
     this.scenery.push(instantiatedObject);
   }
