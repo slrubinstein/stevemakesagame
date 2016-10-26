@@ -1,9 +1,9 @@
 const Rock = require('./Rock');
-const Enemy = require('./Enemy');
+const Slime = require('./enemies/Slime');
 
 const GameObjects = {
   Rock,
-  Enemy
+  Slime
 };
 
 module.exports = GameObjects;
