@@ -14,8 +14,9 @@ class Game {
   }
 
   init() {
-    this.player = new Player(this, 200, 200);
+    this.player = new Player(200, 200, this);
     this.room =  new Room(RoomLoader['room1'], this);
+    this.actors.push(this.player);
     this.initKeyboard();
     this.update();
   }
@@ -43,7 +44,7 @@ class Game {
 
   getNewRoom(direction) {
     var nextRoom = this.room.data.exits[direction];
-    this.actors.length = 0;
+    this.actors.length = 1;
     this.room = new Room(RoomLoader[nextRoom], this);
   }
 

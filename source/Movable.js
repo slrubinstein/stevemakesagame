@@ -10,6 +10,8 @@ class Movable extends Drawable {
 
   handleCollision() {}
 
+  handleLeaveMap() {}
+
   move(direction) {
     const newPosition = this.getNewPosition(direction);
     const collision = this.checkCollisions(newPosition);
@@ -37,6 +39,7 @@ class Movable extends Drawable {
   checkCollisions(position) {
     const nextStep = Object.assign(position, { width: this.width, height: this.height });
     return this.game.room.scenery
+      .concat(this.game.actors.filter(a => a !== this))
       .filter(item => item.collision)
       .filter(item => CollisionDetector.didCollide(nextStep, item));
   }

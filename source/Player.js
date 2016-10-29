@@ -1,16 +1,22 @@
 const World = require('./World');
 const Movable = require('./Movable');
 const Rock = require('./Rock');
+const Enemy = require('./Enemy');
+const Combat = require('./Combat');
 
 class Player extends Movable {
-  constructor(game, x, y) {
+  constructor(x, y, game) {
     super();
     this.game = game;
     this.x = x;
     this.y = y;
+    this.hp = 20;
+    this.strength = 10;
+    this.defense = 5;
     this.color = 'red';
     this.width = World.CELL_SIZE;
     this.height = World.CELL_SIZE;
+    this.collision = true;
   }
 
   handleKey(key) {
@@ -34,6 +40,13 @@ class Player extends Movable {
     if (collision instanceof Rock) {
       return;
     }
+    if (collision instanceof Enemy) {
+      this.attack(collision);
+    }
+  }
+
+  attack(enemy) {
+    Combat.attack(this, enemy);
   }
 
   handleLeaveMap(direction) {

@@ -14,6 +14,10 @@ class Enemy extends Movable {
     const direction = directions[MathUtils.getRandomBetween(0, 3)];
     super.move(direction);
   }
+
+  die() {
+    this.game.actors.splice(this.game.actors.indexOf(this), 1);
+  }
 }
 
 module.exports = Enemy;
