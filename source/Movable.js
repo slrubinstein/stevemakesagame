@@ -73,6 +73,10 @@ class Movable extends Drawable {
         };
       }
     }
+
+    nextTo(something) {
+      return CollisionDetector.areAdjacent(this, something);
+    }
   }
 
 module.exports = Movable;

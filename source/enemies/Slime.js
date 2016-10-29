@@ -15,6 +15,17 @@ class Slime extends Enemy {
     this.height = World.CELL_SIZE;
     this.collision = true;
   }
+
+  move() {
+    const player = this.game.player;
+
+    if (this.nextTo(player)) {
+        this.attack(player);
+        console.log('Enemy attacks player!')
+    } else {
+        super.move();
+    }
+  }
 }
 
 module.exports = Slime;
