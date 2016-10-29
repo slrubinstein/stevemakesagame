@@ -70,6 +70,10 @@ class Player extends Movable {
   afterMove() {
     this.game.update();
   }
+
+  die() {
+    alert('Game over!');
+  }
 }
 
 module.exports = Player;
