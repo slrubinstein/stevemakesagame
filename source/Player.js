@@ -6,7 +6,7 @@ const Combat = require('./Combat');
 
 class Player extends Movable {
   constructor(x, y, game) {
-    super();
+    super(x, y);
     this.game = game;
     this.x = x;
     this.y = y;
@@ -53,22 +53,26 @@ class Player extends Movable {
     switch(direction) {
       case 'east':
         this.x = 0;
+        this.drawX = this.x;
         break;
       case 'west':
         this.x = World.WORLD_WIDTH - this.width;
+        this.drawX = this.x;
         break;
       case 'north':
         this.y = World.WORLD_HEIGHT - this.height;
+        this.drawY = this.y;
         break;
       case 'south':
         this.y = 0;
+        this.drawY = this.y;
         break;
     }
     this.game.getNewRoom(direction);
   }
 
   afterMove() {
-    this.game.update();
+    this.game.moveEnemies();
   }
 
   die() {

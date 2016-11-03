@@ -1,12 +1,17 @@
-'use strict';
+const TWEEN = require('tween.js');
 
 const CollisionDetector = require('./CollisionDetector');
 const Drawable = require('./Drawable');
+const World = require('./World');
 
 class Movable extends Drawable {
-  constructor() {
-    super();
+  constructor(x, y) {
+    super(x, y);
+    this.lastPosition = {};
+    this.tween = null;
   }
+
+  afterMove() {}
 
   handleCollision() {}
 
@@ -18,22 +23,40 @@ class Movable extends Drawable {
 
     if (collision.length) {
       this.handleCollision(collision[0], newPosition);
+      this.afterMove();
+    } else if (CollisionDetector.didLeaveMap(newPosition)) {
+      this.tween.stop();
+      this.handleLeaveMap(direction);
     } else {
       this.moveToNewPosition(newPosition);
-    }
-
-    if (CollisionDetector.didLeaveMap(newPosition)) {
-      this.handleLeaveMap(direction);
-    }
-
-    if (this.afterMove) {
-      this.afterMove();
     }
   }
 
   moveToNewPosition(newPosition) {
+    this.lastPosition = {
+      x: this.x,
+      y: this.y
+    };
     this.x = newPosition.x;
     this.y = newPosition.y;
+    this.animateMove(newPosition);
+  }
+
+  animateMove(endPosition) {
+    const { lastPosition, x, y } = this;
+    const actor = this;
+
+    this.tween = new TWEEN.Tween(lastPosition)
+      .to(endPosition, World.TICK_TIME)
+      .onUpdate(function() {
+        actor.drawX = this.x;
+        actor.drawY = this.y;
+      })
+      .easing(TWEEN.Easing.Quadratic.InOut)
+      .onComplete(function() {
+        actor.afterMove();
+      })
+      .start();
   }
 
   checkCollisions(position) {

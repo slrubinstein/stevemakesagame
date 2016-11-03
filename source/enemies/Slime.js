@@ -3,7 +3,7 @@ const World = require('../World');
 
 class Slime extends Enemy {
   constructor(x, y, game) {
-    super();
+    super(x, y);
     this.x = x;
     this.y = y;
     this.game = game;
