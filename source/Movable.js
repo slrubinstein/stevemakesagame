@@ -3,12 +3,17 @@ const TWEEN = require('tween.js');
 const CollisionDetector = require('./CollisionDetector');
 const Drawable = require('./Drawable');
 const World = require('./World');
+const AnimateWalk = require('./AnimateWalk');
 
 class Movable extends Drawable {
   constructor(x, y) {
     super(x, y);
     this.lastPosition = {};
-    this.tween = null;
+
+    this.direction = 'south';
+    this.avatarDirectionColumn = 0;
+    this.avatarMovementState = 0
+
   }
 
   afterMove() {}
@@ -18,14 +23,19 @@ class Movable extends Drawable {
   handleLeaveMap() {}
 
   move(direction) {
+    if (!direction) {
+      return;
+    }
+    this.direction = direction;
     const newPosition = this.getNewPosition(direction);
     const collision = this.checkCollisions(newPosition);
+    this.avatarDirectionColumn = World.DIRECTIONS.indexOf(this.direction);
 
     if (collision.length) {
       this.handleCollision(collision[0], newPosition);
       this.afterMove();
     } else if (CollisionDetector.didLeaveMap(newPosition)) {
-      this.tween.stop();
+
       this.handleLeaveMap(direction);
     } else {
       this.moveToNewPosition(newPosition);
@@ -43,20 +53,7 @@ class Movable extends Drawable {
   }
 
   animateMove(endPosition) {
-    const { lastPosition, x, y } = this;
-    const actor = this;
-
-    this.tween = new TWEEN.Tween(lastPosition)
-      .to(endPosition, World.TICK_TIME)
-      .onUpdate(function() {
-        actor.drawX = this.x;
-        actor.drawY = this.y;
-      })
-      .easing(TWEEN.Easing.Quadratic.InOut)
-      .onComplete(function() {
-        actor.afterMove();
-      })
-      .start();
+    AnimateWalk.animateMove(this.lastPosition, endPosition, this);
   }
 
   checkCollisions(position) {

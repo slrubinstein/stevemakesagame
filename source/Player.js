@@ -3,6 +3,7 @@ const Movable = require('./Movable');
 const Rock = require('./Rock');
 const Enemy = require('./Enemy');
 const Combat = require('./Combat');
+const Preloader = require('./Preloader');
 
 class Player extends Movable {
   constructor(x, y, game) {
@@ -17,6 +18,7 @@ class Player extends Movable {
     this.width = World.CELL_SIZE;
     this.height = World.CELL_SIZE;
     this.collision = true;
+    this.avatar = Preloader.loadImage();
   }
 
   handleKey(key) {
@@ -69,6 +71,10 @@ class Player extends Movable {
         break;
     }
     this.game.getNewRoom(direction);
+  }
+
+  draw(ctx) {
+    this.drawAvatar(ctx);
   }
 
   afterMove() {

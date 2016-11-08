@@ -1,7 +1,8 @@
 const WORLD_WIDTH = 400;
 const WORLD_HEIGHT = 400;
 const CELL_SIZE = 40;
-const TICK_TIME = 200;
+const TICK_TIME = 300;
+const DIRECTIONS = ['south', 'east', 'north', 'west'];
 
 const world = {
 
@@ -11,7 +12,9 @@ const world = {
 
   CELL_SIZE,
 
-  TICK_TIME
+  TICK_TIME,
+
+  DIRECTIONS
 
 };
 

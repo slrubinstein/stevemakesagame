@@ -5,7 +5,7 @@ const watch = require('gulp-watch');
 const glob = require('glob');
 const shell = require('gulp-shell');
 
-gulp.task('default', ['browserify', 'copy-html', 'watch']);
+gulp.task('default', ['browserify', 'copy-html', 'copy-assets', 'watch']);
 
 gulp.task('browserify', () => {
   return browserify('./source/app.js')
@@ -31,6 +31,11 @@ gulp.task('copy-html', () => {
   gulp.src('./source/index.html')
   .pipe(gulp.dest('./build'));
 });
+
+gulp.task('copy-assets', () => {
+  gulp.src('./source/assets/*.*')
+  .pipe(gulp.dest('./build/assets'));
+})
 
 gulp.task('load-rooms', () => {
   glob('source/rooms/*.json', {}, function (err, files) {
