@@ -14,7 +14,13 @@ const world = {
 
   TICK_TIME,
 
-  DIRECTIONS
+  DIRECTIONS,
+
+  ctx: null,
+
+  setCtx(ctx) {
+    this.ctx = ctx;
+  }
 
 };
 

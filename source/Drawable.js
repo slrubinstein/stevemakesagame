@@ -1,4 +1,5 @@
 const TWEEN = require('tween.js');
+const World = require('./World');
 let num = 0;
 
 class Drawable {
@@ -7,15 +8,15 @@ class Drawable {
     this.drawY = y;
   }
 
-  draw(ctx) {
-    ctx.fillStyle = this.color;
-    ctx.fillRect(this.drawX, this.drawY, this.width, this.height);
+  draw() {
+    World.ctx.fillStyle = this.color;
+    World.ctx.fillRect(this.drawX, this.drawY, this.width, this.height);
   }
 
-  drawAvatar(ctx) {
+  drawAvatar() {
     const img = this.avatar;
 
-    ctx.drawImage(
+    World.ctx.drawImage(
       img,
       img.height * this.avatarDirectionColumn,
       img.height * this.avatarMovementState,

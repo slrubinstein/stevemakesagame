@@ -73,8 +73,8 @@ class Player extends Movable {
     this.game.getNewRoom(direction);
   }
 
-  draw(ctx) {
-    this.drawAvatar(ctx);
+  draw() {
+    this.drawAvatar();
   }
 
   afterMove() {

@@ -7,8 +7,7 @@ const Enemy = require('./Enemy');
 const TWEEN = require('tween.js');
 
 class Game {
-  constructor(ctx) {
-    this.ctx = ctx;
+  constructor() {
     this.height = World.WORLD_HEIGHT;
     this.width = World.WORLD_WIDTH;
     this.actors = [];
@@ -28,7 +27,7 @@ class Game {
   }
 
   drawWorld() {
-    this.room.drawRoom(this.ctx);
+    this.room.drawRoom(World.ctx);
   }
 
   moveEnemies() {
@@ -36,7 +35,7 @@ class Game {
   }
 
   drawEnemies() {
-    this.getEnemies().forEach(enemy => enemy.draw(this.ctx));
+    this.getEnemies().forEach(enemy => enemy.draw(World.ctx));
   }
 
   getEnemies() {
@@ -50,10 +49,10 @@ class Game {
   }
 
   update(time) {
-    this.ctx.clearRect(0, 0, this.width, this.height);
+    World.ctx.clearRect(0, 0, this.width, this.height);
     this.drawWorld();
     this.drawEnemies();
-    this.player.draw(this.ctx);
+    this.player.draw(World.ctx);
     TWEEN.update(time);
     window.requestAnimationFrame(this.update.bind(this));
   }
