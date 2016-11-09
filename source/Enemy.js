@@ -3,16 +3,13 @@ const World = require('./World');
 const MathUtils = require('./utils/MathUtils');
 const Combat = require('./Combat');
 
-const directions = ['north', 'south', 'east', 'west'];
-
-
 class Enemy extends Movable {
   constructor(x, y) {
     super(x, y);
   }
 
   move() {
-    const direction = directions[MathUtils.getRandomBetween(0, 3)];
+    const direction = World.DIRECTIONS[MathUtils.getRandomBetween(0, 4)];
     super.move(direction);
   }
 

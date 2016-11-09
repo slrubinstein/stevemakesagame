@@ -1,5 +1,6 @@
 const Enemy = require('../Enemy');
 const World = require('../World');
+const Preloader = require('../Preloader');
 
 class Slime extends Enemy {
   constructor(x, y, game) {
@@ -14,6 +15,7 @@ class Slime extends Enemy {
     this.width = World.CELL_SIZE;
     this.height = World.CELL_SIZE;
     this.collision = true;
+    this.avatar = Preloader.getImage('slime');
   }
 
   move() {
@@ -25,6 +27,10 @@ class Slime extends Enemy {
     } else {
         super.move();
     }
+  }
+
+  draw(ctx) {
+    super.drawAvatar(ctx);
   }
 }
 

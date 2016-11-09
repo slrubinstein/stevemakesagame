@@ -17,10 +17,10 @@ class Drawable {
 
     ctx.drawImage(
       img,
-      16 * this.avatarDirectionColumn,
-      16 * this.avatarMovementState,
-      12,
-      16,
+      img.height * this.avatarDirectionColumn,
+      img.height * this.avatarMovementState,
+      img.width,
+      img.height,
       this.drawX,
       this.drawY,
       this.width,

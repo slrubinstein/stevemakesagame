@@ -18,7 +18,7 @@ class Player extends Movable {
     this.width = World.CELL_SIZE;
     this.height = World.CELL_SIZE;
     this.collision = true;
-    this.avatar = Preloader.loadImage();
+    this.avatar = Preloader.getImage('player');
   }
 
   handleKey(key) {
