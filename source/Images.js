@@ -1,7 +1,7 @@
 const Images = [{
   name: 'player',
   path: 'assets/player.png',
-  width: 12,
+  width: 16,
   height: 16
 }, {
   name: 'slime',
