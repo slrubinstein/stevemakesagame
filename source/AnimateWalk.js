@@ -15,24 +15,24 @@ class AnimateWalk {
     const tweenA = new TWEEN.Tween(startPosition)
       .to({x: oneThirdX, y: oneThirdY}, World.TICK_TIME / 3)
       .onUpdate(function() {
-        actor.drawX = this.x;
-        actor.drawY = this.y;
+        actor.drawX = this.x.toFixed(2);
+        actor.drawY = this.y.toFixed(2);
       })
       .onStart(() => actor.avatarMovementState++);
 
     const tweenB = new TWEEN.Tween({x: oneThirdX, y: oneThirdY})
       .to({x: twoThirdsX, y: twoThirdsY}, World.TICK_TIME / 3)
       .onUpdate(function() {
-        actor.drawX = this.x;
-        actor.drawY = this.y;
+        actor.drawX = this.x.toFixed(2);
+        actor.drawY = this.y.toFixed(2);
       })
       .onStart(() => actor.avatarMovementState++);
 
     const tweenC = new TWEEN.Tween({x: twoThirdsX, y: twoThirdsY})
       .to(endPosition, World.TICK_TIME / 3)
       .onUpdate(function() {
-        actor.drawX = this.x;
-        actor.drawY = this.y;
+        actor.drawX = this.x.toFixed(2);
+        actor.drawY = this.y.toFixed(2);
       })
       .onStart(() => actor.avatarMovementState = 0)
       .onComplete(() => {

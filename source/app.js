@@ -1,6 +1,9 @@
 const Game = require('./Game');
 const Preloader = require('./Preloader');
 const World = require('./World');
+const Debug = require('./Debug');
+
+const debug = true;
 
 window.addEventListener('load', function() {
   const canvas = document.getElementById('canvas');
@@ -8,5 +11,9 @@ window.addEventListener('load', function() {
   World.setCtx(ctx);
   const game = new Game(ctx);
 
-  Preloader.loadImages(() => game.init());
+  if (debug) {
+    Debug.init(game);
+  }
+
+  Preloader.loadImages(() => game.init({ debug }));
 });

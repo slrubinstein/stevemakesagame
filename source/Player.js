@@ -8,6 +8,7 @@ const Preloader = require('./Preloader');
 class Player extends Movable {
   constructor(x, y, game) {
     super(x, y);
+    this.name = 'Player';
     this.game = game;
     this.x = x;
     this.y = y;

@@ -5,6 +5,7 @@ const Room = require('./Room');
 const RoomLoader = require('./RoomLoader');
 const Enemy = require('./Enemy');
 const TWEEN = require('tween.js');
+const Debug = require('./Debug');
 
 class Game {
   constructor() {
@@ -55,6 +56,7 @@ class Game {
     this.player.draw(World.ctx);
     TWEEN.update(time);
     window.requestAnimationFrame(this.update.bind(this));
+    Debug.writeDebug();
   }
 }
 
