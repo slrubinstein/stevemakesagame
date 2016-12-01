@@ -56,7 +56,7 @@ gulp.task('load-rooms', () => {
   });
 });
 
-const writeRoomLoader = (roomFiles) => {
+function writeRoomLoader(roomFiles) {
   const ROOM_LOADER_START = 'const RoomLoader = {';
   const ROOM_LOADER_END = '};\nmodule.exports = RoomLoader;';
   const lines = [];
@@ -64,15 +64,17 @@ const writeRoomLoader = (roomFiles) => {
   lines.push(ROOM_LOADER_START);
 
   roomFiles.forEach((roomFile, idx) => {
-    lines.push(roomFile.replace('source', `\troom${idx+1}: require('.`)
+    const roomName = roomFile.replace('source/rooms/', '').replace('.json', '');
+    lines.push(roomFile.replace('source', `\t${roomName}: require('.`)
     .concat(`'),`));
   });
 
   lines.push(ROOM_LOADER_END);
 
+  gutil.log(gutil.colors.yellow('Rewriting RoomLoader.js'));
+
   gulp.src(['source/app.js'])
   .pipe(shell([
-    'echo Rewriting RoomLoader.js',
     'rm source/RoomLoader.js',
     'touch source/RoomLoader.js']
     .concat(
