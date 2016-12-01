@@ -4,7 +4,7 @@ const Preloader = require('../Preloader');
 
 class Slime extends Enemy {
   constructor(x, y, game) {
-    super(x, y);
+    super({ x, y });
     this.name = 'Slime';
     this.x = x;
     this.y = y;

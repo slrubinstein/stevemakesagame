@@ -4,8 +4,8 @@ const MathUtils = require('./utils/MathUtils');
 const Combat = require('./Combat');
 
 class Enemy extends Movable {
-  constructor(x, y) {
-    super(x, y);
+  constructor(config) {
+    super(config);
   }
 
   move() {

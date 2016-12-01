@@ -6,8 +6,8 @@ const World = require('./World');
 const AnimateWalk = require('./AnimateWalk');
 
 class Movable extends Drawable {
-  constructor(x, y) {
-    super(x, y);
+  constructor(config) {
+    super(config);
     this.lastPosition = {};
 
     this.direction = 'south';

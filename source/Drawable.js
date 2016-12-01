@@ -3,7 +3,7 @@ const World = require('./World');
 let num = 0;
 
 class Drawable {
-  constructor(x, y) {
+  constructor({ x, y }) {
     this.drawX = x;
     this.drawY = y;
   }
