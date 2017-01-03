@@ -15,5 +15,5 @@ window.addEventListener('load', function() {
     Debug.init(game);
   }
 
-  Preloader.loadImages(() => game.init({ debug }));
+  Preloader.loadImages(() => game.init({ debug, initialRoom: 'room10' }));
 });
