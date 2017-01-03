@@ -8,5 +8,5 @@ window.addEventListener('load', function() {
   const game = new Game(ctx);
   World.setCtx(ctx);
 
-  Preloader.loadImages(() => game.init());
+  Preloader.loadImages(() => game.init({ initialRoom: 'room10' }));
 });

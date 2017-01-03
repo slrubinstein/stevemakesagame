@@ -13,9 +13,10 @@ class Game {
     this.actors = [];
   }
 
-  init() {
+  init(config) {
+    const { initialRoom } = config;
     this.player = new Player(200, 200, this);
-    this.room =  new Room(RoomLoader['room1'], this);
+    this.room =  new Room(RoomLoader[initialRoom], this);
     this.actors.push(this.player);
     this.initKeyboard();
     this.update();

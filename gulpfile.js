@@ -56,6 +56,17 @@ gulp.task('load-rooms', () => {
   });
 });
 
+gulp.task('copy-rooms', () => {
+  let count = 4;
+  const commands = [];
+
+  for (; count <= 16; count++) {
+    commands.push(`cp ../game-practice/source/assets/level${count}.json source/rooms/room${count}.json`);
+  }
+  gulp.src(['./'])
+    .pipe(shell(commands));
+});
+
 function writeRoomLoader(roomFiles) {
   const ROOM_LOADER_START = 'const RoomLoader = {';
   const ROOM_LOADER_END = '};\nmodule.exports = RoomLoader;';
@@ -63,7 +74,7 @@ function writeRoomLoader(roomFiles) {
 
   lines.push(ROOM_LOADER_START);
 
-  roomFiles.forEach((roomFile, idx) => {
+  roomFiles.forEach((roomFile) => {
     const roomName = roomFile.replace('source/rooms/', '').replace('.json', '');
     lines.push(roomFile.replace('source', `\t${roomName}: require('.`)
     .concat(`'),`));
