@@ -42,9 +42,13 @@ class Game {
     return this.actors.filter(actor => actor instanceof Enemy);
   }
 
+  getPlayer() {
+    return this.actors.filter(actor => actor instanceof Player);
+  }
+
   getNewRoom(direction) {
     var nextRoom = this.room.data.exits[direction];
-    this.actors.length = 1;
+    this.actors = this.getPlayer();
     this.room = new Room(RoomLoader[nextRoom], this);
   }
 
