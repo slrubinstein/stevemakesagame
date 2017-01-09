@@ -8,8 +8,8 @@ class Enemy extends Movable {
     super(config);
   }
 
-  move() {
-    const direction = World.DIRECTIONS[MathUtils.getRandomBetween(0, 4)];
+  move(direction = null) {
+    direction = direction || World.DIRECTIONS[MathUtils.getRandomBetween(0, 4)];
     super.move(direction);
   }
 
@@ -18,7 +18,21 @@ class Enemy extends Movable {
   }
 
   attack(player) {
+    const direction = this.findAdjacentPlayer(player);
+
+    this.turnTowards(direction);
     Combat.attack(this, player);
+  }
+
+  findAdjacentPlayer(player) {
+    if (player.x < this.x) {
+      return 'west';
+    } else if (player.x > this.x) {
+      return 'east';
+    } else if (player.y < this.y) {
+      return 'north';
+    }
+    return 'south';
   }
 }
 

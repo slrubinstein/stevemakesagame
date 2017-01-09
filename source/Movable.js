@@ -29,7 +29,7 @@ class Movable extends Drawable {
     this.direction = direction;
     const newPosition = this.getNewPosition(direction);
     const collision = this.checkCollisions(newPosition);
-    this.avatarDirectionColumn = World.DIRECTIONS.indexOf(this.direction);
+    this.turnTowards(this.direction);
 
     if (collision.length) {
       this.handleCollision(collision[0], newPosition);
@@ -40,6 +40,10 @@ class Movable extends Drawable {
     } else {
       this.moveToNewPosition(newPosition);
     }
+  }
+
+  turnTowards(direction) {
+    this.avatarDirectionColumn = World.DIRECTIONS.indexOf(direction);
   }
 
   moveToNewPosition(newPosition) {
