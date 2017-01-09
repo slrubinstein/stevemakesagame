@@ -5,16 +5,16 @@ let timer = null;
 const Keyboard = {
 
   listen(actor, event) {
+    const keyCode = event.keyCode;
+    if (usableKeys.includes(keyCode)) {
+      event.preventDefault();
+    }
     if (timer !== null) {
       return;
     }
     timer = setTimeout(() => timer = null, World.TICK_TIME);
 
-    const keyCode = event.keyCode;
 
-    if (usableKeys.includes(keyCode)) {
-      event.preventDefault();
-    }
 
     switch(keyCode) {
       case 37:
