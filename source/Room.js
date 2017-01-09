@@ -1,6 +1,7 @@
 const World = require('./World');
 const Rock = require('./Rock');
 const GameObjects = require('./GameObjects');
+const GameProgress = require('./GameProgress');
 const Enemy = require('./Enemy');
 
 class Room {
@@ -40,8 +41,15 @@ class Room {
       return;
     }
 
-    const object = this.data.objects[cell];
+    let object = this.data.objects[cell];
+
     const instantiatedObject = new GameObjects[object](j * World.CELL_SIZE, i * World.CELL_SIZE, this.game);
+
+    if (instantiatedObject.unique) {
+      if (!GameProgress[instantiatedObject.condition]) {
+        return;
+      }
+    }
 
     if (instantiatedObject instanceof Enemy) {
       this.game.actors.push(instantiatedObject);
@@ -50,6 +58,8 @@ class Room {
 
     this.scenery.push(instantiatedObject);
   }
+
+
 }
 
 module.exports = Room;

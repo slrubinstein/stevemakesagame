@@ -1,6 +1,7 @@
 const World = require('./World');
 const Movable = require('./Movable');
 const Rock = require('./Rock');
+const Item = require('./Item');
 const Enemy = require('./Enemy');
 const Combat = require('./Combat');
 const Preloader = require('./Preloader');
@@ -20,6 +21,7 @@ class Player extends Movable {
     this.height = World.CELL_SIZE;
     this.collision = true;
     this.avatar = Preloader.getImage('player');
+    this.inventory = [];
   }
 
   handleKey(key) {
@@ -46,6 +48,15 @@ class Player extends Movable {
     if (collision instanceof Enemy) {
       this.attack(collision);
     }
+    if (collision instanceof Item) {
+      this.pickUp(collision);
+    }
+  }
+
+  pickUp(item) {
+    this.inventory.push(item);
+    item.removeFromRoom(this.game.room);
+    this.move(this.direction);
   }
 
   attack(enemy) {
