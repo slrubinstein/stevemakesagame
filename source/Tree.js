@@ -1,7 +1,7 @@
 const Drawable = require('./Drawable');
 const World = require('./World');
 
-class Rock extends Drawable {
+class Tree extends Drawable {
   constructor(x, y) {
     super({ x, y });
     this.x = x;
@@ -13,4 +13,4 @@ class Rock extends Drawable {
   }
 };
 
-module.exports = Rock;
+module.exports = Tree;
