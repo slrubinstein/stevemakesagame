@@ -3,7 +3,7 @@ const Preloader = require('./Preloader');
 const World = require('./World');
 const Debug = require('./Debug');
 
-const debug = true;
+const debug = false;
 
 window.addEventListener('load', function() {
   const canvas = document.getElementById('canvas');

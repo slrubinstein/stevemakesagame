@@ -2,6 +2,7 @@ const World = require('./World');
 
 const Debug = {
   init(game) {
+    this.debugging = true;
     this.game = game;
 
     const div = document.createElement('div');
@@ -16,6 +17,9 @@ const Debug = {
   },
 
   writeDebug() {
+    if (!this.debugging) {
+      return;
+    }
     this.actorPositionList.innerHTML = '';
     this.game.actors.forEach(a => this.writePosition(a));
   },
