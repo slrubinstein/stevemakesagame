@@ -5,6 +5,7 @@ const watch = require('gulp-watch');
 const glob = require('glob');
 const shell = require('gulp-shell');
 const gutil = require('gulp-util');
+const fs = require('fs');
 
 gulp.task('default', ['browserify', 'copy-html', 'copy-assets', 'watch']);
 
@@ -93,3 +94,27 @@ function writeRoomLoader(roomFiles) {
     )
   ));
 }
+
+gulp.task('build-blog', () => {
+  const playerPath = 'https://static1.squarespace.com/static/57a4e5a59de4bb3671a98744/t/5870578c37c5816f1b24ce3d/1483757452902/player.png?format=300w';
+  const slimePath = 'https://static1.squarespace.com/static/57a4e5a59de4bb3671a98744/t/58705797d482e957e25fa946/1483757463598/slime.png?format=300w';
+
+  const file = fs.readFileSync('source/Images.js', 'utf-8');
+  const replaced = file.replace('assets/player.png', playerPath)
+    .replace('assets/slime.png', slimePath);
+
+  gulp.src(['source'])
+  .pipe(shell([
+      `echo "${replaced}" > source/Images.js`
+    ]));
+
+  gulp.start(['browserify', 'copy-html', 'copy-assets']);
+
+  // need to make this synchronous
+  // or rewrite as a shell script - may be easier
+  gulp.src(['source'])
+  .pipe(shell([
+      `echo "${file}" > source/Images.js`
+    ]));
+
+})
