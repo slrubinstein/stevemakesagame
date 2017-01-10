@@ -7,8 +7,8 @@ const directions = ['north', 'south', 'east', 'west'];
 
 
 class Enemy extends Movable {
-  constructor() {
-    super();
+  constructor(config) {
+    super(config);
   }
 
   move() {

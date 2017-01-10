@@ -4,8 +4,8 @@ const CollisionDetector = require('./CollisionDetector');
 const Drawable = require('./Drawable');
 
 class Movable extends Drawable {
-  constructor() {
-    super();
+  constructor(config) {
+    super(config);
   }
 
   handleCollision() {}

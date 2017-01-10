@@ -3,7 +3,7 @@ const World = require('./World');
 
 class Rock extends Drawable {
   constructor(x, y) {
-    super();
+    super({ x, y });
     this.x = x;
     this.y = y;
     this.width = World.CELL_SIZE;
