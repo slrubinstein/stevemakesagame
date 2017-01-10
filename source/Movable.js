@@ -2,10 +2,12 @@
 
 const CollisionDetector = require('./CollisionDetector');
 const Drawable = require('./Drawable');
+const AnimateWalk = require('./AnimateWalk');
 
 class Movable extends Drawable {
   constructor(config) {
     super(config);
+    this.lastPosition = {};
   }
 
   handleCollision() {}
@@ -13,27 +15,35 @@ class Movable extends Drawable {
   handleLeaveMap() {}
 
   move(direction) {
+    if (!direction) {
+      return;
+    }
+    this.direction = direction;
     const newPosition = this.getNewPosition(direction);
     const collision = this.checkCollisions(newPosition);
 
     if (collision.length) {
       this.handleCollision(collision[0], newPosition);
+      this.afterMove();
+    } else if (CollisionDetector.didLeaveMap(newPosition)) {
+      this.handleLeaveMap(direction);
     } else {
       this.moveToNewPosition(newPosition);
-    }
-
-    if (CollisionDetector.didLeaveMap(newPosition)) {
-      this.handleLeaveMap(direction);
-    }
-
-    if (this.afterMove) {
-      this.afterMove();
     }
   }
 
   moveToNewPosition(newPosition) {
+    this.lastPosition = {
+      x: this.x,
+      y: this.y
+    };
     this.x = newPosition.x;
     this.y = newPosition.y;
+    this.animateMove(newPosition);
+  }
+
+  animateMove(endPosition) {
+    AnimateWalk.animateMove(this.lastPosition, endPosition, this);
   }
 
   checkCollisions(position) {
