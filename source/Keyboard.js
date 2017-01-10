@@ -1,14 +1,20 @@
+const World = require('./World');
 const usableKeys = [37, 38, 39, 40];
+let timer = null;
 
 const Keyboard = {
 
   listen(actor, event) {
-
     const keyCode = event.keyCode;
-
     if (usableKeys.includes(keyCode)) {
       event.preventDefault();
     }
+    if (timer !== null) {
+      return;
+    }
+    timer = setTimeout(() => timer = null, World.TICK_TIME);
+
+
 
     switch(keyCode) {
       case 37:
@@ -24,7 +30,6 @@ const Keyboard = {
         actor.handleKey('downArrow');
         break;
     }
-
   }
 
 };
