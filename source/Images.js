@@ -8,6 +8,11 @@ const Images = [{
   path: 'assets/slime.png',
   width: 20,
   height: 20
+}, {
+  name: 'sword',
+  path: 'assets/sword.png',
+  width: 20,
+  height: 20
 }];
 
 module.exports = Images;

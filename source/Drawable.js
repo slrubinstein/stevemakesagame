@@ -28,6 +28,23 @@ class Drawable {
       this.height
     );
   }
+
+  drawStatic() {
+    const img = this.image;
+
+    World.ctx.drawImage(
+      img,
+      0,
+      0,
+      img.width,
+      img.height,
+      this.drawX,
+      this.drawY,
+      this.width,
+      this.height
+    );
+
+  }
 };
 
 module.exports = Drawable;
