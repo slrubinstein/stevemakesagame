@@ -14,8 +14,6 @@ const Keyboard = {
     }
     timer = setTimeout(() => timer = null, World.TICK_TIME);
 
-
-
     switch(keyCode) {
       case 37:
         actor.handleKey('leftArrow');
