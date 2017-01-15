@@ -20,3 +20,4 @@ module.exports = Combat;
  * long range arrows have to be in the same row/column
  * magic maybe different
  * when enemies attack they need to turn to face player
+ */

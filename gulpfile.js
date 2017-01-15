@@ -20,7 +20,7 @@ gulp.task('browserify', () => {
 function onBrowserifyError(err) {
   gutil.log(gutil.colors.red(
     'Browserify compile error:\n',
-    err.message)
+    err)
   );
   this.emit('end');
 }
