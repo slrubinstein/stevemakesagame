@@ -12,6 +12,7 @@
     "browserify": "^13.1.0",
     "gulp": "^3.9.1",
     "gulp-watch": "^4.3.10",
+    "tween.js": "^16.3.5",
     "vinyl-source-stream": "^1.1.0"
   }
 }
