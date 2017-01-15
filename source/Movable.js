@@ -53,11 +53,7 @@ class Movable extends Drawable {
     };
     this.x = newPosition.x;
     this.y = newPosition.y;
-    this.animateMove(newPosition);
-  }
-
-  animateMove(endPosition) {
-    AnimateWalk.animateMove(this.lastPosition, endPosition, this);
+    AnimateWalk.animateMove(this.lastPosition, newPosition, this);
   }
 
   checkCollisions(position) {
