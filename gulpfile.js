@@ -5,15 +5,17 @@ const watch = require('gulp-watch');
 const glob = require('glob');
 const shell = require('gulp-shell');
 const gutil = require('gulp-util');
+const babelify = require('babelify');
 
 gulp.task('default', ['browserify', 'copy-html', 'copy-assets', 'watch']);
 
 gulp.task('browserify', () => {
   return browserify('./source/app.js')
+    .transform("babelify", {presets: ['es2015']})
     .bundle()
     .on('error', onBrowserifyError)
     .pipe(source('app.js'))
-    .pipe(gulp.dest('./build/'));
+    .pipe(gulp.dest('./build/'))
 });
 
 function onBrowserifyError(err) {

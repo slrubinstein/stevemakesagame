@@ -6,6 +6,7 @@ const RoomLoader = require('./RoomLoader');
 const Enemy = require('./Enemy');
 const TWEEN = require('tween.js');
 const Debug = require('./Debug');
+const Touch = require('./Touch');
 
 class Game {
   constructor() {
@@ -24,7 +25,11 @@ class Game {
 
   initKeyboard() {
     const playerKeyboardListener = Keyboard.listen.bind(null, this.player);
+    const playerTouchListener = Touch.handler.bind(null, this.player);
     document.body.addEventListener('keydown', playerKeyboardListener);
+    document.body.addEventListener('touchstart', playerTouchListener);
+    document.body.addEventListener('touchmove', playerTouchListener);
+    document.body.addEventListener('touchend', playerTouchListener);
   }
 
   drawWorld() {
