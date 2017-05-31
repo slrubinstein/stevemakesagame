@@ -45,7 +45,7 @@ gulp.task('copy-html', () => {
 gulp.task('copy-assets', () => {
   gulp.src('./source/assets/*.*')
   .pipe(gulp.dest('./build/assets'));
-})
+});
 
 gulp.task('load-rooms', () => {
   glob('source/rooms/*.json', {}, function (err, files) {
