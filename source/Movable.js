@@ -1,13 +1,15 @@
-'use strict';
-
 const CollisionDetector = require('./CollisionDetector');
 const Drawable = require('./Drawable');
 const AnimateWalk = require('./AnimateWalk');
+const World = require('./World');
 
 class Movable extends Drawable {
   constructor(config) {
     super(config);
     this.lastPosition = {};
+    this.direction = 'south';
+    this.avatarDirectionColumn = 0;
+    this.avatarMovementState = 0
   }
 
   afterMove() {}
@@ -23,6 +25,8 @@ class Movable extends Drawable {
     this.direction = direction;
     const newPosition = this.getNewPosition(direction);
     const collision = this.checkCollisions(newPosition);
+
+    this.turnTowards(direction);
 
     if (collision.length) {
       this.handleCollision(collision[0], newPosition);
@@ -42,6 +46,10 @@ class Movable extends Drawable {
     this.x = newPosition.x;
     this.y = newPosition.y;
     AnimateWalk.animateMove(this.lastPosition, newPosition, this);
+  }
+
+  turnTowards(direction) {
+    this.avatarDirectionColumn = World.DIRECTIONS.indexOf(direction);
   }
 
   checkCollisions(position) {

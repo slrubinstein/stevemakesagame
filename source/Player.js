@@ -3,6 +3,7 @@ const Movable = require('./Movable');
 const Rock = require('./Rock');
 const Enemy = require('./Enemy');
 const Combat = require('./Combat');
+const Preloader = require('./Preloader');
 
 class Player extends Movable {
   constructor(x, y, game) {
@@ -17,6 +18,7 @@ class Player extends Movable {
     this.width = World.CELL_SIZE;
     this.height = World.CELL_SIZE;
     this.collision = true;
+    this.avatar = Preloader.getImage('player');
   }
 
   handleKey(key) {
@@ -47,6 +49,10 @@ class Player extends Movable {
 
   attack(enemy) {
     Combat.attack(this, enemy);
+  }
+
+  draw() {
+    this.drawAvatar();
   }
 
   handleLeaveMap(direction) {
