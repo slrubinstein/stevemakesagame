@@ -11,5 +11,4 @@ window.addEventListener('load', function() {
   const game = new Game(ctx);
 
   Preloader.loadImages(() => game.init());
-  game.init();
 });
