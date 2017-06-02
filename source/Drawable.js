@@ -6,9 +6,9 @@ class Drawable {
     this.drawY = y;
   }
 
-  draw(ctx) {
-    ctx.fillStyle = this.color;
-    ctx.fillRect(this.drawX, this.drawY, this.width, this.height);
+  draw() {
+    World.ctx.fillStyle = this.color;
+    World.ctx.fillRect(this.drawX, this.drawY, this.width, this.height);
   }
 
   drawAvatar() {

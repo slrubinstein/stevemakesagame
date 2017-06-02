@@ -26,7 +26,7 @@ class Movable extends Drawable {
     const newPosition = this.getNewPosition(direction);
     const collision = this.checkCollisions(newPosition);
 
-    this.turnTowards(direction);
+    this.turnTowards(this.direction);
 
     if (collision.length) {
       this.handleCollision(collision[0], newPosition);

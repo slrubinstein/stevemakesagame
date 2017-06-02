@@ -14,6 +14,11 @@ class AnimateWalk {
         actor.afterMove();
       })
       .start();
+
+    actor.avatarMovementState++;
+    setTimeout(() => actor.avatarMovementState++, World.TICK_TIME / 3);
+    setTimeout(() => actor.avatarMovementState = 0, World.TICK_TIME * 2/ 3);
+
   }
 }
 
