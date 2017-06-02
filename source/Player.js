@@ -56,6 +56,7 @@ class Player extends Movable {
   }
 
   handleLeaveMap(direction) {
+    this.tween.stop();
     switch(direction) {
       case 'east':
         this.x = 0;
