@@ -1,6 +1,4 @@
-const TWEEN = require('tween.js');
 const World = require('./World');
-let num = 0;
 
 class Drawable {
   constructor({ x, y }) {

@@ -6,6 +6,12 @@ const DIRECTIONS = ['south', 'east', 'north', 'west'];
 
 const world = {
 
+  setCtx(ctx) {
+    this.ctx = ctx;
+  },
+
+  DIRECTIONS,
+
   WORLD_WIDTH,
 
   WORLD_HEIGHT,
@@ -21,7 +27,6 @@ const world = {
   setCtx(ctx) {
     this.ctx = ctx;
   }
-
 };
 
 module.exports = world;

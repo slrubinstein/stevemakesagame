@@ -52,6 +52,10 @@ class Player extends Movable {
     Combat.attack(this, enemy);
   }
 
+  draw() {
+    this.drawAvatar();
+  }
+
   handleLeaveMap(direction) {
     this.tween.stop();
     switch(direction) {

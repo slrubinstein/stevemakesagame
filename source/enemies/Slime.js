@@ -30,8 +30,13 @@ class Slime extends Enemy {
     }
   }
 
+<<<<<<< HEAD
   draw(ctx) {
     super.drawAvatar(ctx);
+=======
+  draw() {
+    this.drawAvatar();
+>>>>>>> sprites
   }
 }
 

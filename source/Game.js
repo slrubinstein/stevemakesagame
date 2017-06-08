@@ -5,7 +5,6 @@ const Room = require('./Room');
 const RoomLoader = require('./RoomLoader');
 const Enemy = require('./Enemy');
 const TWEEN = require('tween.js');
-const Debug = require('./Debug');
 
 class Game {
   constructor() {
@@ -43,9 +42,13 @@ class Game {
     return this.actors.filter(actor => actor instanceof Enemy);
   }
 
+  getPlayer() {
+    return this.actors.filter(actor => actor instanceof Player);
+  }
+
   getNewRoom(direction) {
     var nextRoom = this.room.data.exits[direction];
-    this.actors.length = 1;
+    this.actors = this.getPlayer();
     this.room = new Room(RoomLoader[nextRoom], this);
   }
 
@@ -56,7 +59,6 @@ class Game {
     this.player.draw(World.ctx);
     TWEEN.update(time);
     window.requestAnimationFrame(this.update.bind(this));
-    Debug.writeDebug();
   }
 }
 

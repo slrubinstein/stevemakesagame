@@ -1,19 +1,15 @@
-const TWEEN = require('tween.js');
-
 const CollisionDetector = require('./CollisionDetector');
 const Drawable = require('./Drawable');
-const World = require('./World');
 const AnimateWalk = require('./AnimateWalk');
+const World = require('./World');
 
 class Movable extends Drawable {
   constructor(config) {
     super(config);
     this.lastPosition = {};
-
     this.direction = 'south';
     this.avatarDirectionColumn = 0;
     this.avatarMovementState = 0
-
   }
 
   afterMove() {}
@@ -31,19 +27,16 @@ class Movable extends Drawable {
     const collision = this.checkCollisions(newPosition);
     this.turnTowards(this.direction);
 
+    this.turnTowards(this.direction);
+
     if (collision.length) {
       this.handleCollision(collision[0], newPosition);
       this.afterMove();
     } else if (CollisionDetector.didLeaveMap(newPosition)) {
-
       this.handleLeaveMap(direction);
     } else {
       this.moveToNewPosition(newPosition);
     }
-  }
-
-  turnTowards(direction) {
-    this.avatarDirectionColumn = World.DIRECTIONS.indexOf(direction);
   }
 
   moveToNewPosition(newPosition) {
@@ -54,6 +47,10 @@ class Movable extends Drawable {
     this.x = newPosition.x;
     this.y = newPosition.y;
     AnimateWalk.animateMove(this.lastPosition, newPosition, this);
+  }
+
+  turnTowards(direction) {
+    this.avatarDirectionColumn = World.DIRECTIONS.indexOf(direction);
   }
 
   checkCollisions(position) {
