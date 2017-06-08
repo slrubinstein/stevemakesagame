@@ -23,6 +23,10 @@ class Enemy extends Movable {
   attack(player) {
     Combat.attack(this, player);
   }
+
+  draw() {
+    this.drawAvatar();
+  }
 }
 
 module.exports = Enemy;

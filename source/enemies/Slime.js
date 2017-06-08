@@ -28,10 +28,6 @@ class Slime extends Enemy {
         super.move();
     }
   }
-
-  draw() {
-    this.drawAvatar();
-  }
 }
 
 module.exports = Slime;
