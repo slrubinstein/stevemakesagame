@@ -5,12 +5,14 @@ const Room = require('./Room');
 const RoomLoader = require('./RoomLoader');
 const Enemy = require('./Enemy');
 const TWEEN = require('tween.js');
+const GameData = require('./GameData');
 
 class Game {
   constructor() {
     this.height = World.WORLD_HEIGHT;
     this.width = World.WORLD_WIDTH;
     this.actors = [];
+    this.gameData = new GameData(this);
   }
 
   init(config) {
@@ -55,6 +57,7 @@ class Game {
 
   update(time) {
     World.ctx.clearRect(0, 0, this.width, this.height);
+    this.gameData.update();
     this.drawWorld();
     this.drawEnemies();
     this.player.draw(World.ctx);

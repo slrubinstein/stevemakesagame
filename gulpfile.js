@@ -7,7 +7,7 @@ const shell = require('gulp-shell');
 const gutil = require('gulp-util');
 const fs = require('fs');
 
-gulp.task('default', ['browserify', 'copy-html', 'copy-assets', 'watch']);
+gulp.task('default', ['browserify', 'copy-html', 'copy-css', 'copy-assets', 'watch']);
 
 gulp.task('browserify', () => {
   return browserify('./source/app.js')
@@ -28,18 +28,25 @@ function onBrowserifyError(err) {
 const watchers = [
   'source/**/*.js',
   'source/rooms/*.json',
-  'source/index.html'
+  'source/index.html',
+  'source/style.css'
 ];
 
 gulp.task('watch', () => {
   return watch(watchers, () => {
     gulp.start('browserify');
     gulp.start('copy-html');
+    gulp.start('copy-css');
   });
 });
 
 gulp.task('copy-html', () => {
   gulp.src('./source/index.html')
+  .pipe(gulp.dest('./build'));
+});
+
+gulp.task('copy-css', () => {
+  gulp.src('./source/style.css')
   .pipe(gulp.dest('./build'));
 });
 
