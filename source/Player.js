@@ -20,6 +20,7 @@ class Player extends Movable {
     this.height = World.CELL_SIZE;
     this.collision = true;
     this.avatar = Preloader.getImage('player');
+    this.weapon = null;
   }
 
   handleKey(key) {
@@ -49,7 +50,9 @@ class Player extends Movable {
   }
 
   attack(enemy) {
-    Combat.attack(this, enemy);
+    if (this.weapon) {
+      Combat.attack(this, enemy);
+    }
   }
 
   draw() {

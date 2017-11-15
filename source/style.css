@@ -12,3 +12,13 @@
 .column {
   width: 50%;
 }
+
+#overlay {
+  height: 400px;
+  width: 400px;
+  position: absolute;
+  z-index: 1;
+  background: red;
+  opacity: 0;
+  transition: opacity 50ms;
+}

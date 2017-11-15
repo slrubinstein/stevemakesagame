@@ -7,6 +7,8 @@ const Combat = {
     if (defender.hp <= 0) {
       defender.die();
     }
+
+    defender.getHit();
   }
 };
 

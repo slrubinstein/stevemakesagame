@@ -24,6 +24,10 @@ class Enemy extends Movable {
     Combat.attack(this, player);
   }
 
+  getHit() {
+
+  }
+
   findAdjacentPlayer(player) {
     if (player.x < this.x) {
       return 'west';

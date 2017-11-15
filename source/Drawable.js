@@ -1,9 +1,11 @@
 const World = require('./World');
+const Player = require('./Player');
 
 class Drawable {
   constructor({ x, y }) {
     this.drawX = x;
     this.drawY = y;
+    this.overlay = document.getElementById('overlay');
   }
 
   draw() {
@@ -25,6 +27,19 @@ class Drawable {
       this.width,
       this.height
     );
+  }
+
+  getHit() {
+    if (this.name === 'Player') {
+      this.flashDamage();
+    }
+  }
+
+  flashDamage() {
+    this.overlay.style.opacity = .2;
+    setTimeout(() => {
+      this.overlay.style.opacity = 0;
+    }, 50);
   }
 };
 
